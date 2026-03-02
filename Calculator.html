@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pastel Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#F3E8FF; /* Solid pastel lavender */
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+/* Calculator Card */
+.calculator{
+    background:white;
+    padding:35px;
+    border-radius:30px;
+    width:340px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Display */
+.display{
+    width:100%;
+    height:65px;
+    border:none;
+    border-radius:20px;
+    padding:15px;
+    font-size:22px;
+    text-align:right;
+    margin-bottom:25px;
+    background:#f7f7f7;
+    outline:none;
+}
+
+/* Grid */
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+/* Buttons */
+button{
+    height:60px;
+    border:none;
+    border-radius:20px;
+    font-size:18px;
+    font-weight:500;
+    cursor:pointer;
+    transition:all 0.2s ease;
+    color:#333;
+}
+
+/* Number Button Gradient */
+.number{
+    background:linear-gradient(to bottom right,#EAD5FF,#D6E4FF);
+}
+
+/* Operator Gradient */
+.operator{
+    background:linear-gradient(to bottom right,#FFD6E0,#FFF3B0);
+}
+
+/* Equal Button */
+.equal{
+    background:linear-gradient(to bottom right,#CDE7F0,#D7F9F1);
+}
+
+/* Clear Button */
+.clear{
+    background:linear-gradient(to bottom right,#FFDAC1,#FFD6E0);
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 18px rgba(0,0,0,0.15);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+<input type="text" id="display" class="display" readonly>
+
+<div class="buttons">
+
+<button class="clear" onclick="clearDisplay()">C</button>
+<button class="operator" onclick="append('(')">(</button>
+<button class="operator" onclick="append(')')">)</button>
+<button class="operator" onclick="append('/')">/</button>
+
+<button class="number" onclick="append('7')">7</button>
+<button class="number" onclick="append('8')">8</button>
+<button class="number" onclick="append('9')">9</button>
+<button class="operator" onclick="append('*')">*</button>
+
+<button class="number" onclick="append('4')">4</button>
+<button class="number" onclick="append('5')">5</button>
+<button class="number" onclick="append('6')">6</button>
+<button class="operator" onclick="append('-')">-</button>
+
+<button class="number" onclick="append('1')">1</button>
+<button class="number" onclick="append('2')">2</button>
+<button class="number" onclick="append('3')">3</button>
+<button class="operator" onclick="append('+')">+</button>
+
+<button class="number" style="grid-column:span 2;" onclick="append('0')">0</button>
+<button class="number" onclick="append('.')">.</button>
+<button class="equal" onclick="calculate()">=</button>
+
+</div>
+
+</div>
+
+<script>
+
+function append(value){
+    document.getElementById("display").value += value;
+}
+
+function clearDisplay(){
+    document.getElementById("display").value = "";
+}
+
+function calculate(){
+    try{
+        document.getElementById("display").value =
+        eval(document.getElementById("display").value);
+    } catch{
+        alert("Invalid Expression");
+    }
+}
+
+</script>
+
+</body>
+</html>
